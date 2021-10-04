@@ -18,6 +18,7 @@ class Character extends FlxSprite
 	public var holdTimer:Float = 0;
 
 	public var isPlayingAsBF:Bool;
+	private var dodgeTimer:Float = 2;
 
 	public function new(x:Float, y:Float, ?character:String = "bf", ?isPlayer:Bool = false)
 	{
@@ -293,6 +294,7 @@ class Character extends FlxSprite
 				animation.addByPrefix('deathLoop', "BF Dead Loop", 24, true);
 				animation.addByPrefix('deathConfirm', "BF Dead confirm", 24, false);
 
+				animation.addByPrefix('dodge', 'boyfriend dodge', 24, false);
 				animation.addByPrefix('scared', 'BF idle shaking', 24);
 
 				addOffset('idle', -5);
@@ -311,6 +313,7 @@ class Character extends FlxSprite
 				addOffset('deathConfirm', 37, 69);
 				addOffset('scared', -4);
 
+				addOffset('dodge');
 				playAnim('idle');
 
 				flipX = true;
@@ -507,6 +510,37 @@ class Character extends FlxSprite
 				addOffset("singDOWN-alt", -30, -27);
 
 				playAnim('idle');
+
+			case 'hank':
+				frames = Paths.getSparrowAtlas('characters/hank');
+				animation.addByPrefix('idle', 'Hank Idle', 24, false);
+				animation.addByPrefix('singUP', 'Hank Up note', 24, false);
+				animation.addByPrefix('singDOWN', 'Hank Down Note', 24, false);
+				animation.addByPrefix('singLEFT', 'Hank Left Note', 24, false);
+				animation.addByPrefix('singRIGHT', 'Hank right note', 24, false);
+
+				animation.addByPrefix('shootDown', 'Hank Down Shoot', 24, false);
+				animation.addByPrefix('shootLeft', 'Hank Left Shoot', 24, false);
+				animation.addByPrefix('shootUp', 'Hank Up shoot', 24, false);
+				animation.addByPrefix('shootRight', 'Hank right shoot', 24, false);
+
+				animation.addByPrefix('scaredIdle', 'HankScaredIdle', 24, false);
+				animation.addByPrefix('scaredShootTiky', 'HankScaredShootsTiky', 24, false);
+				addOffset('idle');
+				addOffset("singUP");
+				addOffset("singRIGHT");
+				addOffset("singLEFT");
+				addOffset("singDOWN");
+
+				addOffset('shootDown');
+				addOffset('shootLeft');
+				addOffset('shootUp');
+				addOffset('shootRight');
+				
+				addOffset('scaredIdle');
+				addOffset('scaredShootTiky', 0, 247);
+
+				playAnim('idle');
 		}
 
 		dance();
@@ -601,6 +635,21 @@ class Character extends FlxSprite
 		{
 			switch (curCharacter)
 			{
+				case 'bf':
+					if (animation.curAnim.name.startsWith('dodge')) {
+						dodgeTimer--;
+						if (dodgeTimer > 0) {
+							trace(dodgeTimer + " till no more dodge :(");
+							return;
+						}
+						else if (dodgeTimer <= 0) {
+							dodgeTimer = 2;
+							playAnim('idle');
+						}
+					}
+					else {
+						playAnim('idle');
+					}
 				case 'gf':
 					if (!animation.curAnim.name.startsWith('hair'))
 					{
@@ -643,7 +692,6 @@ class Character extends FlxSprite
 						else
 							playAnim('danceLeft');
 					}
-
 				case 'spooky':
 					danced = !danced;
 
@@ -651,6 +699,16 @@ class Character extends FlxSprite
 						playAnim('danceRight');
 					else
 						playAnim('danceLeft');
+				case 'hank':
+					if (animation.curAnim.name.startsWith('scaredIdle')) {
+						playAnim('scaredIdle');
+					}
+					else if (animation.curAnim.name.startsWith('scaredShootsTiky')) {
+						return;
+					}
+					else {
+						playAnim('idle');
+					}
 				default:
 					playAnim('idle');
 			}

@@ -244,6 +244,22 @@ class ModchartState
 					PlayState.instance.iconP2.animation.play(id);
 	}
 
+	function changeDadCharacterToGf(newDad:String, newGf:String)
+		{
+					var olddadx = PlayState.gf.x;
+					var olddady = PlayState.gf.y;
+					var newgfx = PlayState.dad.x;
+					var newgfy = PlayState.dad.y;
+					PlayState.instance.removeObject(PlayState.dad);
+					PlayState.instance.removeObject(PlayState.gf);
+					PlayState.dad = new Character(olddadx, olddady, newDad);
+					PlayState.gf = new Character(newgfx, newgfy, newGf);
+					PlayState.instance.addObject(PlayState.gf);
+					PlayState.instance.addObject(PlayState.dad);
+//					PlayState.instance.iconP2.animation.play(newDad);
+		}
+
+
 	function changeBoyfriendCharacter(id:String)
 	{				var oldboyfriendx = PlayState.boyfriend.x;
 					var oldboyfriendy = PlayState.boyfriend.y;
@@ -429,6 +445,8 @@ class ModchartState
 				Lua_helper.add_callback(lua,"changeDadCharacter", changeDadCharacter);
 
 				Lua_helper.add_callback(lua,"changeBoyfriendCharacter", changeBoyfriendCharacter);
+
+				Lua_helper.add_callback(lua, "changeDadCharacterToGf", changeDadCharacterToGf);
 
 				Lua_helper.add_callback(lua,"changeMania", changeMania);
 	

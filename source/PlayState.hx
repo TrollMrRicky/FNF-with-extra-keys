@@ -974,6 +974,11 @@ class PlayState extends MusicBeatState
 				
 
 		}
+
+		if (SONG.song.toLowerCase() == 'accelerant') {
+			dadyoffset += 180;
+			gf.x += 180;
+		}
 		if (PlayStateChangeables.flip)
 		{
 			boyfriend.x += dadxoffset;
@@ -3913,6 +3918,7 @@ class PlayState extends MusicBeatState
 							daNote.kill();
 							notes.remove(daNote, true);
 							daNote.destroy();
+
 						}
 					else if ((daNote.mustPress && daNote.tooLate && !PlayStateChangeables.useDownscroll || daNote.mustPress && daNote.tooLate
 						&& PlayStateChangeables.useDownscroll)
@@ -4050,12 +4056,18 @@ class PlayState extends MusicBeatState
 								}
 								case 3:  //warning notes, removes half health and then removed so it doesn't repeatedly deal damage
 								{
+									if (SONG.song.toLowerCase() == 'accelerant' && storyDifficulty == 2) {
+										health -= 2.2;
+									}
+									else {
 									health -= 1;
+									}
 									vocals.volume = 0;
 									badNoteHit();
 									daNote.kill();
 									notes.remove(daNote, true);
 									daNote.destroy();
+									trace("warning note missed");
 								}
 								case 4: //angel notes
 								{
@@ -5641,6 +5653,13 @@ class PlayState extends MusicBeatState
 						{
 							HealthDrain();
 						}
+					else if (note.warning) {
+						trace("warning note hit");
+						if (SONG.song.toLowerCase() == 'accelerant' && note.warning) {
+							boyfriend.playAnim('dodge', true);
+							trace("we damm dodged da bullet");
+						}
+					}
 
 
 					if(!loadRep && note.mustPress)
@@ -6146,6 +6165,195 @@ class PlayState extends MusicBeatState
 						//switchMania(12);
 				}
 			}
+		if (SONG.song.toLowerCase() == "accelerant" && curStep != stepOfLast && storyDifficulty == 1) {
+			switch (curStep) {
+				case 170:
+					dad.playAnim('shootDown', true);
+//					boyfriend.playAnim('dodge');
+				case 200:
+					dad.playAnim('shootUp', true);
+//					boyfriend.playAnim('dodge');
+				case 202:
+					dad.playAnim('shootDown', true);
+//					boyfriend.playAnim('dodge');
+				case 288:
+					gf.playAnim('cheer', true);
+				case 444:
+					dad.playAnim('shootDown', true);
+//					boyfriend.playAnim('dodge');
+				case 468:
+					dad.playAnim('shootLeft', true);
+//					boyfriend.playAnim('dodge');
+
+				case 469:
+					dad.playAnim('shootRight', true);
+//					boyfriend.playAnim('dodge');
+
+				case 470:
+					dad.playAnim('shootLeft', true);	
+//					boyfriend.playAnim('dodge');
+	
+				case 476:
+					dad.playAnim('shootDown', true);
+//					boyfriend.playAnim('dodge');
+
+				case 478:
+					dad.playAnim('shootRight', true);
+//					boyfriend.playAnim('dodge');
+				case 672:
+					gf.playAnim('scaredIdle', true);
+				case 594:
+					dad.playAnim('shootDown', true);
+//					boyfriend.playAnim('dodge');
+
+				case 596:
+					dad.playAnim('shootDown', true);
+//					boyfriend.playAnim('dodge');
+
+				case 600:
+					dad.playAnim('shootDown', true);
+//					boyfriend.playAnim('dodge');
+
+				case 600:
+					dad.playAnim('shootDown', true);
+//					boyfriend.playAnim('dodge');
+				case 822:
+					dad.playAnim('shootDown', true);
+//					boyfriend.playAnim('dodge');
+
+				case 826:
+					dad.playAnim('shootDown', true);
+//					boyfriend.playAnim('dodge');
+				case 934:
+					dad.playAnim('scaredShootTiky', true);
+				case 973:
+					dad.playAnim('shootUp', true);
+//					boyfriend.playAnim('dodge');
+
+				case 966:
+					dad.playAnim('shootDown', true);
+//					boyfriend.playAnim('dodge');
+				
+				case 999:
+					dad.playAnim('shootDown', true);
+//					boyfriend.playAnim('dodge');
+
+				case 1004:
+					dad.playAnim('shootDown', true);
+	//				boyfriend.playAnim('dodge');
+
+				case 1068:
+					dad.playAnim('shootDown', true);
+//					boyfriend.playAnim('dodge');
+
+				case 1076:
+					dad.playAnim('shootUp', true);
+//					boyfriend.playAnim('dodge');
+
+				case 1082:
+					dad.playAnim('shootUp', true);
+//					boyfriend.playAnim('dodge');
+
+				case 1086:
+					dad.playAnim('shootDown', true);
+	//				boyfriend.playAnim('dodge');
+
+				case 1092:
+					dad.playAnim('shootDown', true);
+//					boyfriend.playAnim('dodge');
+
+				case 1098:
+					dad.playAnim('shootUp', true);
+	//				boyfriend.playAnim('dodge');
+
+				case 1102:
+					dad.playAnim('shootLeft', true);
+//					boyfriend.playAnim('dodge');
+
+				case 1108:
+					dad.playAnim('shootUp', true);
+//					boyfriend.playAnim('dodge');
+
+				case 1114:
+					dad.playAnim('shootDown', true);
+//					boyfriend.playAnim('dodge');
+
+				case 1118:
+					dad.playAnim('shootUp', true);
+//					boyfriend.playAnim('dodge');
+
+				case 1122:
+					dad.playAnim('shootDown', true);
+//					boyfriend.playAnim('dodge');
+
+				case 1124:
+					dad.playAnim('shootDown', true);
+//					boyfriend.playAnim('dodge');
+
+				case 1128:
+					dad.playAnim('shootLeft', true);
+//					boyfriend.playAnim('dodge');
+
+				case 1130:
+					dad.playAnim('shootDown', true);
+	//				boyfriend.playAnim('dodge');
+
+				case 1132:
+					dad.playAnim('shootUp', true);
+	//				boyfriend.playAnim('dodge');
+
+				case 1134:
+					dad.playAnim('shootRight', true);
+	//				boyfriend.playAnim('dodge');
+
+				case 1140:
+					dad.playAnim('shootUp', true);
+					boyfriend.playAnim('dodge');
+
+				case 1147:
+					dad.playAnim('shootRight', true);
+	//				boyfriend.playAnim('dodge');
+
+				case 1151:
+					dad.playAnim('shootLeft', true);
+	//				boyfriend.playAnim('dodge');
+
+				case 1156:
+					dad.playAnim('shootUp', true);
+	//				boyfriend.playAnim('dodge');
+//
+				case 1163:
+					dad.playAnim('shootLeft', true);
+	//				boyfriend.playAnim('dodge');
+
+				case 1167:
+					dad.playAnim('shootUp', true);
+	//				boyfriend.playAnim('dodge');
+
+				case 1172:
+					dad.playAnim('shootUp', true);
+//					boyfriend.playAnim('dodge');
+
+				case 1179:
+					dad.playAnim('shootUp', true);
+//					boyfriend.playAnim('dodge');
+
+				case 1183:
+					dad.playAnim('shootRight', true);
+//					boyfriend.playAnim('dodge');
+
+				case 1186:
+					dad.playAnim('shootUp', true);
+//					boyfriend.playAnim('dodge');
+
+				case 1188:
+					dad.playAnim('shootDown', true);
+//					boyfriend.playAnim('dodge');
+
+
+			}
+		} 
+
 
 		// yes this updates every step.
 		// yes this is bad
