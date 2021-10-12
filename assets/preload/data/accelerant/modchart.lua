@@ -21,15 +21,15 @@ function stepHit(step)
     end
 
     if step == 672 then   
-        changeDadCharacterToGf("gf", "hank")
+        changeDadCharacterToGf("tiky", "hank")
     end
 
     if step == 800 then
-        changeDadCharacterToGf("hank", "gf")
+        changeDadCharacterToGf("hank", "tiky")
     end
 
     if step == 863 then
-        changeDadCharacterToGf("gf", "hank")
+        changeDadCharacterToGf("tiky", "hank")
     end
 
     if step == 937 then

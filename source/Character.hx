@@ -541,6 +541,21 @@ class Character extends FlxSprite
 				addOffset('scaredShootTiky', 0, 247);
 
 				playAnim('idle');
+			case 'tiky':
+				frames = Paths.getSparrowAtlas('characters/tiky');
+				animation.addByPrefix('idle', 'trickyidle', 24, false);
+				animation.addByPrefix('singDown', 'trickydwon', 24, false);
+				animation.addByPrefix('singLeft', 'trickyileft', 24, false);
+				animation.addByPrefix('singRight', 'trickyright', 24, false);
+				animation.addByPrefix('singUp', 'trickyup', 24, false);
+
+				addOffset('idle');
+				addOffset("singUP");
+				addOffset("singRIGHT");
+				addOffset("singLEFT");
+				addOffset("singDOWN");
+
+				playAnim('idle');
 		}
 
 		dance();
